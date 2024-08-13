@@ -37,7 +37,7 @@ public class UsuarioController {
     @ApiResponse(responseCode = "201",description = "usuário cadastrado com sucesso",content = {
    		@Content(mediaType = "application.json",schema = @Schema(implementation = ResponseEntity.class))
     })           
-	public ResponseEntity<Usuario>cadastrarUsuario(@RequestBody @Valid Usuario usuario){
+	public ResponseEntity<Usuario>cadastrarUsuario(@RequestBody Usuario usuario){
 		var cadastrar = usuarioService.cadastrarUsuario(usuario);
 		return new ResponseEntity<>(cadastrar,HttpStatus.CREATED);  
 	}
