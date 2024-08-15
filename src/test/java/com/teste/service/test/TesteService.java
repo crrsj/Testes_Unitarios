@@ -159,7 +159,7 @@ import com.teste.service.UsuarioService;
 			 assertThrows(RuntimeException.class, ()->usuarioService.atualizarParcial(usuario,ID));
 		}
 		
-	  
+	   
 	  @Test
 	  void sucessoAobuscarPorNome() {
 		  when(usuarioRepository.findByNome(anyString())).thenReturn(List.of(usuario));

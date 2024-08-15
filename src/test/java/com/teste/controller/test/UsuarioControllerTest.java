@@ -9,7 +9,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +26,7 @@ import com.teste.model.Usuario;
 import com.teste.repository.UsuarioRepository;
 import com.teste.service.UsuarioService;
 
-@SpringBootTest
+    @SpringBootTest
     class UsuarioControllerTest {
 	
 	private static final Long ID = 1L;
@@ -65,7 +65,10 @@ import com.teste.service.UsuarioService;
 		assertNotNull(resposta);
 		assertEquals(ResponseEntity.class, resposta.getClass());
 		assertEquals(HttpStatus.CREATED , resposta.getStatusCode());
-		
+		assertEquals(ID, resposta.getBody().getId());
+		assertEquals(NOME, resposta.getBody().getNome());
+		assertEquals(EMAIL, resposta.getBody().getEmail());
+		assertEquals(TELEFONE, resposta.getBody().getTelefone());
 		
 		
 	}
@@ -80,7 +83,7 @@ import com.teste.service.UsuarioService;
 		assertEquals(HttpStatus.OK, resposta.getStatusCode());
 		assertEquals(ID, resposta.getBody().getId());
 		assertEquals(NOME, resposta.getBody().getNome());
-		assertEquals(EMAIL, resposta.getBody().getEmail());
+		assertEquals(EMAIL, resposta.getBody().getEmail()); 
 		assertEquals(TELEFONE, resposta.getBody().getTelefone());
 	}
 	
@@ -89,8 +92,13 @@ import com.teste.service.UsuarioService;
 		when(usuarioService.atualizarUsuario(usuario,ID)).thenReturn(usuario);
 		ResponseEntity<Usuario>resposta = usuarioController.atualizarUsuario(usuario, ID);
 		assertNotNull(resposta);
+		assertNotNull(resposta.getBody());
 		assertEquals(ResponseEntity.class, resposta.getClass());
 		assertEquals(HttpStatus.OK, resposta.getStatusCode());
+		assertEquals(ID, resposta.getBody().getId());
+		assertEquals(NOME, resposta.getBody().getNome());
+		assertEquals(EMAIL, resposta.getBody().getEmail()); 
+		assertEquals(TELEFONE, resposta.getBody().getTelefone());
 	}
 	
 	@Test
@@ -101,7 +109,13 @@ import com.teste.service.UsuarioService;
 		assertNotNull(resposta);
 		assertEquals(ResponseEntity.class, resposta.getClass());
 		assertEquals(HttpStatus.OK, resposta.getStatusCode());
+		assertEquals(ID, resposta.getBody().getId());
+		assertEquals(NOME, resposta.getBody().getNome());
+		assertEquals(EMAIL, resposta.getBody().getEmail()); 
+		assertEquals(TELEFONE, resposta.getBody().getTelefone());
 	}
+		
+	
 	
 	@Test
 	void sucessoAoBuscarPorNome() {
